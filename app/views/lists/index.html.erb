@@ -1,27 +1,25 @@
-<nav class="navbar navbar-light bg-light">
+<nav class="navbar navbar-light bg-light fixed-top">
+  <span id="empty"></span>
   <span class="navbar-brand mb-0 h1"><%= link_to "New list", new_list_path %></span>
 </nav>
 
-<div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path @list.photo.key, height: 300, crop: :fill %>')">
-  Cool list
+<div class="banner home"><h1>Movies</h1></div>
+
+<div class="main-container">
+  <h3>What are you going to watch right now?</h3>
+
+    <div class="card-container-flex" >
+      <% @lists.each do |list| %>
+      <div class="card">
+        <div class="card-image">
+          <% if list.photo.attached? %>
+            <%=  cl_image_tag list.photo.key, alt: "Movie Card" %>
+          <% else %>
+            <%=  image_tag "list_background.jpg", alt: "Movie Card" %>
+          <% end %>
+        </div>
+        <%= link_to list.name, list %>
+      </div>
+      <% end %>
+  </div>
 </div>
-
-
-<div class="banner">
-
-  <h1>Movies</h1>
-</div>
-
-  <div class="container d-flex" >
-    <% @lists.each do |list| %>
-    <div class="card">
-      <div class="card-image"><%= image_tag "list_background.jpg", alt: "Movie Card" %></div>
-      <p><%= list.id %> <%= list.name %></p>
-    </div>
-    <% end %>
-</div>
-
-<%= cl_image_tag("gn55brdqvsg2gm01aqde",
-      width: 400, height: 300, crop: :fill) %>
-<%= cl_image_tag("ywsdfn94bhlv6p8tu5gk",
-      width: 400, height: 300, crop: :fill) %>

@@ -1,0 +1,18 @@
+.btn a {
+  color: white;
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.btn {
+  margin: 10px;
+  justify-items: end;
+  position: absolute;
+  right: 20px;
+}
+
+.button-bar {
+  position: relative;
+  height: 50px;
+}

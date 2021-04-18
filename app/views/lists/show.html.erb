@@ -1,6 +1,27 @@
+<nav class="navbar navbar-light bg-light fixed-top">
+  <span id="empty"></span>
+  <span class="navbar-brand mb-0 h1"><%= link_to "Lists", root_path %></span>
+</nav>
 
-<p><%= @list.id %> <%= @list.name %></p>
 
-<%= cl_image_tag @list.photo.key, height: 300, width: 400, crop: :fill %>
+<div class="banner" style="background-image: url(<%= @list.photo.attached? ? cl_image_path(@list.photo.key) : asset_path('list_background.jpg') %>)">
+</div>
+ <div class="button-bar">
+  <div class="btn btn-success">
+    <%= link_to "add a movie", new_list_bookmark_path(@list.id) %>
+  </div>
+</div>
 
-<%= link_to "back", root_path %>
+<div class="main-container">
+<% @list.bookmarks.each do |bookmark|%>
+  <div class="card-container-flex">
+    <div class="card">
+      <div class="card-image">
+      <%= image_tag bookmark.movie.poster_url %>
+      </div>
+      <div class="title"><%= bookmark.movie.title %></div>
+      <div class="overview"><%= bookmark.movie.overview %></div>
+    </div>
+  <% end %>
+  </div>
+</div>
